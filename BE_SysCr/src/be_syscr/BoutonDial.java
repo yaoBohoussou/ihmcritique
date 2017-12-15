@@ -7,6 +7,8 @@ package be_syscr;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.LinkedList;
 import java.lang.Math.*;
 import static java.lang.Math.cos;
@@ -21,6 +23,7 @@ public class BoutonDial extends javax.swing.JPanel {
     
     private LinkedList<BoutonDialStates> stateOrder;
     private int stateIndex;
+    private double theta = 0;
 
     /**
      * Creates new form Ampoule
@@ -42,26 +45,25 @@ public class BoutonDial extends javax.swing.JPanel {
         
         g.setColor(Color.DARK_GRAY);
         g.fillOval(0, 0, getWidth(), getHeight());
-                   
+        
+        /*cursor*/
         int x_centre = getWidth()/2;
         int y_centre = getHeight()/2;
         
-        double theta = Math.PI/2;
         int norm = (int) 0.75 * getHeight()/2;
         
         int x_cursor = norm * ((int) cos(theta)) + x_centre;
         int y_cursor = norm * ((int) sin(theta)) + y_centre;
+        System.out.println("x_cursor = " + x_cursor + " y_cursor = "+y_cursor);
         
         int diameter_curs = getHeight()/10;
         
         g.setColor(Color.BLACK);
-        g.fillOval(x_centre-5, y_centre-5, diameter_curs, diameter_curs);
-        
-        
+        g.fillOval(x_cursor, y_cursor, diameter_curs, diameter_curs);              
     }
 
     public void click_droit() {
-        
+        theta = theta+Math.PI/2;
         repaint();
     }
 
