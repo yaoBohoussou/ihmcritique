@@ -13,12 +13,13 @@ import java.util.LinkedList;
 import java.lang.Math.*;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
+import javax.swing.SwingUtilities;
 
 /**
  *
  * @author martinie
  */
-public class BoutonDial extends javax.swing.JPanel {
+public class BoutonDial extends javax.swing.JPanel implements MouseListener{
 
     
     private LinkedList<BoutonDialStates> stateOrder;
@@ -37,6 +38,7 @@ public class BoutonDial extends javax.swing.JPanel {
         stateOrder.add(BoutonDialStates.WXA);
         stateOrder.add(BoutonDialStates.OFF);
         stateIndex = 0;
+        this.addMouseListener(this);
     }
 
     @Override
@@ -55,9 +57,9 @@ public class BoutonDial extends javax.swing.JPanel {
         int diameter_curs = getHeight()/10;
         int x_cursor = (int) (newNorm * cos(theta)) + x_centre -diameter_curs/2;
         int y_cursor = (int) (newNorm * sin(theta)) + y_centre -diameter_curs/2;
-        System.out.println("norm = "+norm+ " newNorm = "+newNorm+ " theta = "+theta+" x_cursor = " + x_cursor + " y_cursor = "+y_cursor);
+        /*System.out.println("norm = "+norm+ " newNorm = "+newNorm+ " theta = "+theta+" x_cursor = " + x_cursor + " y_cursor = "+y_cursor);
         
-        System.out.println("cos(theta) = "+ ((int) cos(theta)));
+        System.out.println("cos(theta) = "+ ((int) cos(theta)));*/
         
         g.setColor(Color.BLACK);
         g.fillOval(x_cursor, y_cursor, diameter_curs, diameter_curs);              
@@ -96,4 +98,28 @@ public class BoutonDial extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if(SwingUtilities.isLeftMouseButton(e))
+            click_gauche();
+        else  
+            click_droit();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+    }
 }
