@@ -19,7 +19,7 @@ import javax.swing.SwingUtilities;
  *
  * @author martinie
  */
-public class BoutonDial extends javax.swing.JPanel implements MouseListener{
+public class BoutonDial extends javax.swing.JPanel {
 
     
     private LinkedList<BoutonDialStates> stateOrder;
@@ -38,7 +38,7 @@ public class BoutonDial extends javax.swing.JPanel implements MouseListener{
         stateOrder.add(BoutonDialStates.WXA);
         stateOrder.add(BoutonDialStates.OFF);
         stateIndex = 0;
-        this.addMouseListener(this);
+        //this.addMouseListener(this);
     }
 
     @Override
@@ -65,13 +65,15 @@ public class BoutonDial extends javax.swing.JPanel implements MouseListener{
         g.fillOval(x_cursor, y_cursor, diameter_curs, diameter_curs);              
     }
 
-    public void click_droit() {
-        theta = theta+2*Math.PI/5;
+    public void click_droit(double angleAvance) {
+        //theta = theta+2*Math.PI/5;
+        theta = theta+angleAvance;
         repaint();
     }
 
-    public void click_gauche() {
-        theta = theta-2*Math.PI/5;
+    public void click_gauche(double angleAvance) {
+        //theta = theta-2*Math.PI/5;
+        theta = theta-angleAvance;
         repaint();
     }
 
@@ -98,28 +100,4 @@ public class BoutonDial extends javax.swing.JPanel implements MouseListener{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        if(SwingUtilities.isLeftMouseButton(e))
-            click_gauche();
-        else  
-            click_droit();
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
 }
